@@ -1,7 +1,9 @@
-#include <stdio.h>
+#include <iostream>
 
 int main()
 {
-    printf("Hello World!");
+    std::cout << "Hello World!" << std::endl;
+
+    std::cout << "This is the new line for the prebuild task" << std::endl;
     return 0;
 }
