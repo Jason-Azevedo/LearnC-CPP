@@ -10,9 +10,12 @@ project(
 add_executable(TextRPGGame 
     src/main.cpp
     src/entity/entity.cpp
+    src/combat/combat.cpp
     )
 
 target_include_directories(
     TextRPGGame
     PRIVATE 
-        src/entity)
+        src/entity
+        src/combat
+        )

@@ -1,14 +1,7 @@
 #include <iostream>
 
 #include "entity.h"
-
-/*
-    REQUIREMENTS:
-        1. Utils to make this easier to code.
-        2. State management, of both the player and enemies.
-*/
-
-// TODO: Define the enemy struct
+#include "combat.h"
 
 int main()
 {
@@ -26,17 +19,40 @@ int main()
     std::cout << "Please enter the number of the class you want to be: ";
     std::cin >> classInput;
 
-    // Determine and set a class for the user with the class input
+    // Adjust input to be 0 based then validate user input!
+    classInput--;
+    if (classInput <= 0 || classInput > 3)
+    {
+        std::cout << "Invalid input! Please try again..." << std::endl;
+        return 1;
+    }
 
-    Entity *player = setupEntity(classInput);
+    // Initialize our player and first enemy
+    Entity *player = setupEntity((EntityType)classInput);
+    Entity *goblin = setupEntity(ENTITY_GOBLIN);
 
-    // TODO: Fight 1 against goblin
+    std::cout << "You have chosen: " << player->entityType << std::endl;
+
+    // ACT 1
+    std::cout << std::endl
+              << "-------------- ACT 1 --------------" << std::endl;
+    std::cout << "You have left your hideout and started to embark on your journey when..." << std::endl;
+    std::cout << "A " << goblin->entityType << " jumps you..." << std::endl;
+
+    combat(player, goblin);
 
     // TODO: Choose upgrade
+
+    std::cout << std::endl
+              << "-------------- ACT 2 --------------" << std::endl;
+    std::cout << "You are making your way through the slums when..." << std::endl;
 
     // TODO: Fight 2 agaisnt wizard thief
 
     // TODO: Choose different gear item
+    std::cout << std::endl
+              << "-------------- ACT 3 --------------" << std::endl;
+    std::cout << "You did it, you made it to the top of the moutain when..." << std::endl;
 
     // TODO: Final boss dragaon
 
