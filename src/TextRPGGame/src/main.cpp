@@ -39,7 +39,11 @@ int main()
     std::cout << "You have left your hideout and started to embark on your journey when..." << std::endl;
     std::cout << "A " << goblin->entityType << " jumps you..." << std::endl;
 
-    combat(player, goblin);
+    if (combat(player, goblin))
+    {
+        std::cout << "GAME OVER" << std::endl;
+        return 0;
+    }
 
     // TODO: Choose upgrade
 

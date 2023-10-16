@@ -19,6 +19,12 @@ Entity *setupEntity(EntityType entityType)
         entity->mana = 300;
         entity->stamina = 50;
 
+        entity->weapon.name = "Wizards Staff";
+        entity->weapon.attackTypes = new WeaponAttackType[3]{
+            {"Fireball", 60, 12, 5},
+            {"Frostblast", 45, 8, 5},
+            {"LightningBolt", 69, 17, 5}};
+
         break;
 
     case ENTITY_PLAYER_THIEF:
@@ -33,6 +39,12 @@ Entity *setupEntity(EntityType entityType)
         entity->mana = 60;
         entity->stamina = 220;
 
+        entity->weapon.name = "Dagger";
+        entity->weapon.attackTypes = new WeaponAttackType[3]{
+            {"Stab", 45, 0, 10},
+            {"Slash", 20, 0, 5},
+            {"Power Stab", 60, 0, 20}};
+
         break;
 
     case ENTITY_PLAYER_KNIGHT:
@@ -46,6 +58,12 @@ Entity *setupEntity(EntityType entityType)
         entity->armor = 35;
         entity->mana = 50;
         entity->stamina = 120;
+
+        entity->weapon.name = "Sword";
+        entity->weapon.attackTypes = new WeaponAttackType[3]{
+            {"Stab", 75, 0, 25},
+            {"Slash", 50, 0, 12},
+            {"Power Attack", 95, 0, 32}};
 
         break;
 

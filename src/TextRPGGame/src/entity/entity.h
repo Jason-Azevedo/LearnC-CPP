@@ -14,7 +14,7 @@ enum EntityType
 };
 
 /* TYPE DEFINITIONS */
-typedef struct Entity
+struct Entity
 {
     const char *entityType;
 

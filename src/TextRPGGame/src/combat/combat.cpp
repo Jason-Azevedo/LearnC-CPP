@@ -5,6 +5,22 @@
 
 #include "entity.h"
 
+void playerAttack(Entity *player, Entity *attacked)
+{
+    std::cout << "Choose an attack to perform on " << attacked->entityType << std::endl;
+
+    // TODO: Iterate through attack options the player has and display them
+
+    // TODO: Get user input for selecting attack
+
+    // TODO: Logic for that attack (could be in a function)
+}
+
+void enemyAttack(Entity *enemy, Entity *player)
+{
+    // Let the enemy attack the player based on what they have.
+}
+
 // Returns true if the player won
 bool combat(Entity *player, Entity *enemy)
 {
@@ -45,19 +61,4 @@ bool combat(Entity *player, Entity *enemy)
 
     // Did the player win the fight?
     return player->health > 0;
-}
-
-void playerAttack(Entity *player, Entity *attacked)
-{
-    std::cout << "Choose an attack: " << std::endl;
-
-    // List the players current attack options:
-
-
-    // List the options based on the weapons the player has.
-}
-
-void enemyAttack(Entity *enemy, Entity *player)
-{
-    // Let the enemy attack the player based on what they have.
 }
