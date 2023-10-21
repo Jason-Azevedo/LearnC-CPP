@@ -20,7 +20,8 @@ Entity *setupEntity(EntityType entityType)
         entity->stamina = 50;
 
         entity->weapon.name = "Wizards Staff";
-        entity->weapon.attackTypes = new WeaponAttackType[3]{
+        entity->weapon.attackTypesCount = 3;
+        entity->weapon.attackTypes = new WeaponAttackType[entity->weapon.attackTypesCount]{
             {"Fireball", 60, 12, 5},
             {"Frostblast", 45, 8, 5},
             {"LightningBolt", 69, 17, 5}};
@@ -40,7 +41,8 @@ Entity *setupEntity(EntityType entityType)
         entity->stamina = 220;
 
         entity->weapon.name = "Dagger";
-        entity->weapon.attackTypes = new WeaponAttackType[3]{
+        entity->weapon.attackTypesCount = 3;
+        entity->weapon.attackTypes = new WeaponAttackType[entity->weapon.attackTypesCount]{
             {"Stab", 45, 0, 10},
             {"Slash", 20, 0, 5},
             {"Power Stab", 60, 0, 20}};
@@ -60,7 +62,8 @@ Entity *setupEntity(EntityType entityType)
         entity->stamina = 120;
 
         entity->weapon.name = "Sword";
-        entity->weapon.attackTypes = new WeaponAttackType[3]{
+        entity->weapon.attackTypesCount = 3;
+        entity->weapon.attackTypes = new WeaponAttackType[entity->weapon.attackTypesCount]{
             {"Stab", 75, 0, 25},
             {"Slash", 50, 0, 12},
             {"Power Attack", 95, 0, 32}};

@@ -5,15 +5,43 @@
 
 #include "entity.h"
 
+void performAttack(WeaponAttackType *attackType, Entity *attacked)
+{
+    // Remove the entities health based on the attack
+    if ((attacked->health - attackType->damage) > 10000)
+        attacked->health = 0;
+
+    attacked->health -= attackType->damage;
+}
+
 void playerAttack(Entity *player, Entity *attacked)
 {
     std::cout << "Choose an attack to perform on " << attacked->entityType << std::endl;
 
-    // TODO: Iterate through attack options the player has and display them
+    int attackOptionCount = player->weapon.attackTypesCount;
+    int playerOption = 0;
 
-    // TODO: Get user input for selecting attack
+    while (playerOption <= 0 || playerOption > attackOptionCount)
+    {
+        // List the options
+        for (int i = 0; i < attackOptionCount; i++)
+        {
+            std::cout << i + 1 << ": " << player->weapon.attackTypes[i].attackName << std::endl;
+        }
 
-    // TODO: Logic for that attack (could be in a function)
+        // Read the option the player selected
+        std::cin >> playerOption;
+
+        // Input is invalid
+        if (playerOption <= 0 || playerOption > attackOptionCount)
+        {
+            std::cout << std::endl
+                      << "Invalid input.. please try again.." << std::endl;
+            continue;
+        }
+    }
+
+    performAttack(&player->weapon.attackTypes[playerOption], attacked);
 }
 
 void enemyAttack(Entity *enemy, Entity *player)

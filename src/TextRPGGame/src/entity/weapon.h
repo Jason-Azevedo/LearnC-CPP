@@ -15,5 +15,6 @@ struct Weapon
 {
     const char *name;
 
+    int attackTypesCount;
     WeaponAttackType *attackTypes;
 };
