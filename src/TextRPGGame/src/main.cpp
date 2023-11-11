@@ -46,37 +46,33 @@ int main()
     std::cout << "You have left your hideout and started to embark on your journey when..." << std::endl;
     std::cout << "A " << goblin->entityType << " jumps you..." << std::endl;
 
-    if (combat(player, goblin))
+    if (!combat(player, goblin))
     {
         return printGameOver();
     }
 
-    free(&goblin);
-
     std::cout << std::endl
+              << std::endl
               << "-------------- ACT 2 --------------" << std::endl;
     std::cout << "You are making your way through the slums when..." << std::endl;
     Entity *bandit = setupEntity(ENTITY_BANDIT);
 
-    if (combat(player, goblin))
+    if (!combat(player, bandit))
     {
         return printGameOver();
     }
 
-    free(&bandit);
-
     std::cout << std::endl
+              << std::endl
               << "-------------- ACT 3 --------------" << std::endl;
     std::cout << "You did it, you made it to the top of the moutain when..." << std::endl;
 
     Entity *dragon = setupEntity(ENTITY_DRAGON);
 
-    if (combat(player, dragon))
+    if (!combat(player, dragon))
     {
         return printGameOver();
     }
-
-    free(&dragon);
 
     // Exit game
     std::cout << std::endl

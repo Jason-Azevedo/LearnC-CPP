@@ -89,6 +89,47 @@ Entity *setupEntity(EntityType entityType)
             {"Slash", 15, 0, 10}};
 
         break;
+
+    case ENTITY_BANDIT:
+        entity->entityType = "Bandit";
+        entity->strength = 12;
+        entity->evasion = 18;
+        entity->critChance = 10;
+        entity->speed = 8;
+
+        entity->health = 100;
+        entity->armor = 7;
+        entity->mana = 0;
+        entity->stamina = 170;
+
+        entity->weapon.name = "Dagger";
+        entity->weapon.attackTypesCount = 2;
+        entity->weapon.attackTypes = new WeaponAttackType[entity->weapon.attackTypesCount]{
+            {"Stab", 13, 0, 10},
+            {"Slash", 15, 0, 10}};
+
+        break;
+
+    case ENTITY_DRAGON:
+        entity->entityType = "Dragon";
+        entity->strength = 30;
+        entity->evasion = 5;
+        entity->critChance = 8;
+        entity->speed = 6;
+
+        entity->health = 380;
+        entity->armor = 12;
+        entity->mana = 150;
+        entity->stamina = 230;
+
+        entity->weapon.name = "Breath & Claws";
+        entity->weapon.attackTypesCount = 3;
+        entity->weapon.attackTypes = new WeaponAttackType[entity->weapon.attackTypesCount]{
+            {"Fire Breath", 25, 10, 20},
+            {"Bite", 30, 0, 10},
+            {"Claws", 25, 0, 10}};
+
+        break;
     }
 
     return entity;

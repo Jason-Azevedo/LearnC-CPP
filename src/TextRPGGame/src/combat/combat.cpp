@@ -59,7 +59,7 @@ void playerAttack(Entity *player, Entity *enemy)
         }
     }
 
-    performAttack(&player->weapon.attackTypes[playerOption], enemy);
+    performAttack(&player->weapon.attackTypes[playerOption - 1], enemy);
     printPlayerAndEntityStats(player, enemy);
 }
 
