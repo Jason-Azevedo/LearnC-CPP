@@ -3,6 +3,12 @@
 #include "entity.h"
 #include "combat.h"
 
+int printGameOver()
+{
+    std::cout << "GAME OVER" << std::endl;
+    return 0;
+}
+
 int main()
 {
     // START THE GAME
@@ -20,7 +26,6 @@ int main()
     std::cin >> classInput;
 
     // Adjust input to be 0 based then validate user input!
-    classInput--;
     if (classInput <= 0 || classInput > 3)
     {
         std::cout << "Invalid input! Please try again..." << std::endl;
@@ -28,6 +33,8 @@ int main()
     }
 
     // Initialize our player and first enemy
+    // Adjust to be 0 based.
+    classInput--;
     Entity *player = setupEntity((EntityType)classInput);
     Entity *goblin = setupEntity(ENTITY_GOBLIN);
 
@@ -41,27 +48,42 @@ int main()
 
     if (combat(player, goblin))
     {
-        std::cout << "GAME OVER" << std::endl;
-        return 0;
+        return printGameOver();
     }
 
-    // TODO: Choose upgrade
+    free(&goblin);
 
     std::cout << std::endl
               << "-------------- ACT 2 --------------" << std::endl;
     std::cout << "You are making your way through the slums when..." << std::endl;
+    Entity *bandit = setupEntity(ENTITY_BANDIT);
 
-    // TODO: Fight 2 agaisnt wizard thief
+    if (combat(player, goblin))
+    {
+        return printGameOver();
+    }
 
-    // TODO: Choose different gear item
+    free(&bandit);
+
     std::cout << std::endl
               << "-------------- ACT 3 --------------" << std::endl;
     std::cout << "You did it, you made it to the top of the moutain when..." << std::endl;
 
-    // TODO: Final boss dragaon
+    Entity *dragon = setupEntity(ENTITY_DRAGON);
+
+    if (combat(player, dragon))
+    {
+        return printGameOver();
+    }
+
+    free(&dragon);
 
     // Exit game
+    std::cout << std::endl
+              << "********************************************" << std::endl;
     std::cout << "Thank you for playing! Hope you enjoyed!" << std::endl;
+    std::cout << std::endl
+              << "********************************************" << std::endl;
 
     return 0;
 }

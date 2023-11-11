@@ -5,18 +5,36 @@
 
 #include "entity.h"
 
+void printStats(Entity *entity)
+{
+    std::cout << entity->entityType << " Health: "
+              << entity->health << " Mana: "
+              << entity->mana << std::endl;
+}
+
+void printPlayerAndEntityStats(Entity *player, Entity *enemy)
+{
+    std::cout << std::endl;
+    printStats(player);
+    printStats(enemy);
+    std::cout << std::endl;
+}
+
 void performAttack(WeaponAttackType *attackType, Entity *attacked)
 {
     // Remove the entities health based on the attack
-    if ((attacked->health - attackType->damage) > 10000)
+    if ((attacked->health - attackType->damage) < 0)
+    {
         attacked->health = 0;
+        return;
+    }
 
     attacked->health -= attackType->damage;
 }
 
-void playerAttack(Entity *player, Entity *attacked)
+void playerAttack(Entity *player, Entity *enemy)
 {
-    std::cout << "Choose an attack to perform on " << attacked->entityType << std::endl;
+    std::cout << "Choose an attack to perform on " << enemy->entityType << std::endl;
 
     int attackOptionCount = player->weapon.attackTypesCount;
     int playerOption = 0;
@@ -41,12 +59,23 @@ void playerAttack(Entity *player, Entity *attacked)
         }
     }
 
-    performAttack(&player->weapon.attackTypes[playerOption], attacked);
+    performAttack(&player->weapon.attackTypes[playerOption], enemy);
+    printPlayerAndEntityStats(player, enemy);
 }
 
 void enemyAttack(Entity *enemy, Entity *player)
 {
-    // Let the enemy attack the player based on what they have.
+    srand((unsigned)time(0));
+
+    int randomAttack = (rand() % enemy->weapon.attackTypesCount);
+    WeaponAttackType attack = enemy->weapon.attackTypes[randomAttack];
+
+    std::cout << enemy->entityType << " performs " << attack.attackName
+              << " attack on you. Damage: (" << attack.damage << ")" << std::endl;
+
+    // Perform the attack
+    performAttack(&enemy->weapon.attackTypes[randomAttack], player);
+    printPlayerAndEntityStats(player, enemy);
 }
 
 // Returns true if the player won
@@ -58,7 +87,7 @@ bool combat(Entity *player, Entity *enemy)
     while (player->health > 0 && enemy->health > 0)
     {
         std::cout << std::endl
-                  << "ROUND " << round << std::endl;
+                  << "--------------------------- ROUND " << round << " ---------------------------" << std::endl;
 
         // Determine who attacks first
         srand((unsigned)time(0));

@@ -18,15 +18,15 @@ struct Entity
 {
     const char *entityType;
 
-    unsigned int strength;
-    unsigned int evasion;
-    unsigned int critChance;
-    unsigned int speed;
+    int strength;
+    int evasion;
+    int critChance;
+    int speed;
 
-    unsigned int health;
-    unsigned int armor;
-    unsigned int mana;
-    unsigned int stamina;
+    int health;
+    int armor;
+    int mana;
+    int stamina;
 
     Weapon weapon;
 };

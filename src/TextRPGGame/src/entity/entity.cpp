@@ -82,6 +82,12 @@ Entity *setupEntity(EntityType entityType)
         entity->mana = 0;
         entity->stamina = 150;
 
+        entity->weapon.name = "Dagger";
+        entity->weapon.attackTypesCount = 2;
+        entity->weapon.attackTypes = new WeaponAttackType[entity->weapon.attackTypesCount]{
+            {"Stab", 13, 0, 10},
+            {"Slash", 15, 0, 10}};
+
         break;
     }
 
