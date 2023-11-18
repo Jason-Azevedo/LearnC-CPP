@@ -7,6 +7,10 @@ project(
     LANGUAGES CXX
 )
 
+add_subdirectory(src/config)
+add_subdirectory(src/logging)
+add_subdirectory(src/fileSorting)
+
 add_executable(FSort 
     src/main.cpp
 )
